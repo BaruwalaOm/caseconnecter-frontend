@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  :root {
+    --background: 210 27% 95%; /* #F0F4F8 Light gray */
+    --foreground: 210 25% 15%; /* Dark gray for text on light gray */
+
+    --muted: 210 25% 85%;
+    --muted-foreground: 210 20% 40%;
+
+    --popover: 210 27% 95%;
+    --popover-foreground: 210 25% 15%;
+
+    --card: 210 27% 98%; /* Slightly lighter than background for cards */
+    --card-foreground: 210 25% 15%;
+
+    --border: 210 20% 80%;
+    --input: 210 20% 88%;
+
+    --primary: 205 65% 62%; /* #5DADE2 Calm blue */
+    --primary-foreground: 0 0% 100%; /* White */
+
+    --secondary: 185 55% 70%; /* A slightly lighter, complementary blue/teal */
+    --secondary-foreground: 210 25% 15%;
+
+    --accent: 165 50% 77%; /* #A3E4D7 Soft green */
+    --accent-foreground: 165 30% 25%; /* Darker green for text on accent */
+
+    --destructive: 0 72% 51%; /* Standard red for destructive actions */
+    --destructive-foreground: 0 0% 100%; /* White */
+
+    --ring: 205 65% 62%; /* Calm blue for rings */
+
+    --radius: 0.5rem;
+
+    --chart-1: 205 65% 62%;
+    --chart-2: 165 50% 77%;
+    --chart-3: 210 40% 50%;
+    --chart-4: 30 80% 60%;
+    --chart-5: 280 70% 65%;
+
+    /* Sidebar specific theme variables */
+    --sidebar-background: 210 15% 20%; /* Darker background for sidebar */
+    --sidebar-foreground: 210 15% 85%; /* Light text for dark sidebar */
+    --sidebar-primary: 205 65% 62%; /* Calm blue for active/primary items in sidebar */
+    --sidebar-primary-foreground: 0 0% 100%; /* White */
+    --sidebar-accent: 210 15% 30%; /* Accent for hover states in dark sidebar */
+    --sidebar-accent-foreground: 210 15% 95%;
+    --sidebar-border: 210 15% 25%;
+    --sidebar-ring: 205 65% 62%;
+  }
+
+  .dark {
+    --background: 210 15% 10%; /* Dark background for dark mode */
+    --foreground: 210 15% 90%; /* Light text for dark mode */
+
+    --muted: 210 15% 20%;
+    --muted-foreground: 210 15% 65%;
+
+    --popover: 210 15% 10%;
+    --popover-foreground: 210 15% 90%;
+
+    --card: 210 15% 15%; /* Slightly lighter than background for cards in dark mode */
+    --card-foreground: 210 15% 90%;
+
+    --border: 210 15% 25%;
+    --input: 210 15% 22%;
+
+    --primary: 205 60% 58%; /* Slightly adjusted blue for dark mode */
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 185 50% 60%;
+    --secondary-foreground: 210 15% 90%;
+
+    --accent: 165 45% 70%; /* Slightly adjusted green for dark mode */
+    --accent-foreground: 165 25% 20%;
+
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --ring: 205 60% 58%;
+    
+    /* Sidebar specific theme variables for dark mode */
+    --sidebar-background: 210 10% 15%; 
+    --sidebar-foreground: 210 10% 80%;
+    --sidebar-primary: 205 60% 58%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 10% 25%;
+    --sidebar-accent-foreground: 210 10% 90%;
+    --sidebar-border: 210 10% 20%;
+    --sidebar-ring: 205 60% 58%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom strikethrough style */
+s {
+  text-decoration: none; /* Remove default strikethrough */
+  position: relative;
+  display: inline-block;
+}
+
+s::before {
+  content: "";
+  position: absolute;
+  left: -0.1em;
+  right: -0.1em;
+  top: 50%;
+  height: 0.12em; /* Adjust thickness of the line */
+  background-color: #ff6b6b; /* Reddish color for the line */
+  transform: translateY(-50%) rotate(-2deg); /* Slight rotation for effect */
+  border-radius: 0.05em;
+  transition: all 0.2s ease-out; /* Optional: add a subtle transition */
+}
+
+/* Optional: Hover effect for the strikethrough */
+s:hover::before {
+  transform: translateY(-50%) rotate(2deg); /* Change rotation on hover */
+  background-color: #e05252; /* Darken color on hover */
+}
+
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    background-color: white !important; /* Ensure background is white for print */
+    color: black !important; /* Ensure text is black for print */
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-table { /* If you still want to use Tailwind's print:table */
+    display: table !important;
+  }
+  /* Add any other global print styles here */
+}
